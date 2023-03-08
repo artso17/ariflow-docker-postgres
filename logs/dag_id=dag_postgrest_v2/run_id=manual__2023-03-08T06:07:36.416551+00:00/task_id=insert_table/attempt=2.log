@@ -1,0 +1,41 @@
+[2023-03-08T06:09:24.495+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: dag_postgrest_v2.insert_table manual__2023-03-08T06:07:36.416551+00:00 [queued]>
+[2023-03-08T06:09:24.535+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: dag_postgrest_v2.insert_table manual__2023-03-08T06:07:36.416551+00:00 [queued]>
+[2023-03-08T06:09:24.536+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-08T06:09:24.536+0000] {taskinstance.py:1280} INFO - Starting attempt 2 of 7
+[2023-03-08T06:09:24.536+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-08T06:09:24.629+0000] {taskinstance.py:1300} INFO - Executing <Task(PostgresOperator): insert_table> on 2023-03-08 06:07:36.416551+00:00
+[2023-03-08T06:09:24.641+0000] {standard_task_runner.py:55} INFO - Started process 10797 to run task
+[2023-03-08T06:09:24.648+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'dag_postgrest_v2', 'insert_table', 'manual__2023-03-08T06:07:36.416551+00:00', '--job-id', '94', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_postgres.py', '--cfg-path', '/tmp/tmp8efy496h']
+[2023-03-08T06:09:24.654+0000] {standard_task_runner.py:83} INFO - Job 94: Subtask insert_table
+[2023-03-08T06:09:24.878+0000] {task_command.py:388} INFO - Running <TaskInstance: dag_postgrest_v2.insert_table manual__2023-03-08T06:07:36.416551+00:00 [running]> on host df4d96e1a045
+[2023-03-08T06:09:25.148+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Aditya
+AIRFLOW_CTX_DAG_ID=dag_postgrest_v2
+AIRFLOW_CTX_TASK_ID=insert_table
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-08T06:07:36.416551+00:00
+AIRFLOW_CTX_TRY_NUMBER=2
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-03-08T06:07:36.416551+00:00
+[2023-03-08T06:09:25.149+0000] {sql.py:254} INFO - Executing: 
+        insert into dag_run (dt,dag_id) values('2023-03-08','dag_postgrest_v2')
+        
+[2023-03-08T06:09:25.232+0000] {taskinstance.py:1768} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/operators/sql.py", line 255, in execute
+    hook = self.get_db_hook()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/operators/sql.py", line 179, in get_db_hook
+    return self._hook
+  File "/home/airflow/.local/lib/python3.7/site-packages/cached_property.py", line 36, in __get__
+    value = obj.__dict__[self.func.__name__] = self.func(obj)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/operators/sql.py", line 141, in _hook
+    conn = BaseHook.get_connection(self.conn_id)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/hooks/base.py", line 72, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/connection.py", line 435, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `postgrest_table` isn't defined
+[2023-03-08T06:09:25.246+0000] {taskinstance.py:1323} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_postgrest_v2, task_id=insert_table, execution_date=20230308T060736, start_date=20230308T060924, end_date=20230308T060925
+[2023-03-08T06:09:25.300+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 94 for task insert_table (The conn_id `postgrest_table` isn't defined; 10797)
+[2023-03-08T06:09:25.347+0000] {local_task_job.py:208} INFO - Task exited with return code 1
+[2023-03-08T06:09:25.430+0000] {taskinstance.py:2578} INFO - 0 downstream tasks scheduled from follow-on schedule check

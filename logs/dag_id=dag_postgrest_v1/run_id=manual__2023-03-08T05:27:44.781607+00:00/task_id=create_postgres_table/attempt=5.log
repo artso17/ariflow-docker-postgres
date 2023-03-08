@@ -1,0 +1,54 @@
+[2023-03-08T05:37:13.887+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: dag_postgrest_v1.create_postgres_table manual__2023-03-08T05:27:44.781607+00:00 [queued]>
+[2023-03-08T05:37:13.933+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: dag_postgrest_v1.create_postgres_table manual__2023-03-08T05:27:44.781607+00:00 [queued]>
+[2023-03-08T05:37:13.933+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-08T05:37:13.933+0000] {taskinstance.py:1280} INFO - Starting attempt 5 of 10
+[2023-03-08T05:37:13.934+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-08T05:37:13.990+0000] {taskinstance.py:1300} INFO - Executing <Task(PostgresOperator): create_postgres_table> on 2023-03-08 05:27:44.781607+00:00
+[2023-03-08T05:37:14.001+0000] {standard_task_runner.py:55} INFO - Started process 8135 to run task
+[2023-03-08T05:37:14.014+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'dag_postgrest_v1', 'create_postgres_table', 'manual__2023-03-08T05:27:44.781607+00:00', '--job-id', '87', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_postgres.py', '--cfg-path', '/tmp/tmpbsgquqw_']
+[2023-03-08T05:37:14.018+0000] {standard_task_runner.py:83} INFO - Job 87: Subtask create_postgres_table
+[2023-03-08T05:37:14.159+0000] {task_command.py:388} INFO - Running <TaskInstance: dag_postgrest_v1.create_postgres_table manual__2023-03-08T05:27:44.781607+00:00 [running]> on host df4d96e1a045
+[2023-03-08T05:37:14.281+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Aditya
+AIRFLOW_CTX_DAG_ID=dag_postgrest_v1
+AIRFLOW_CTX_TASK_ID=create_postgres_table
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-08T05:27:44.781607+00:00
+AIRFLOW_CTX_TRY_NUMBER=5
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-03-08T05:27:44.781607+00:00
+[2023-03-08T05:37:14.282+0000] {sql.py:254} INFO - Executing: 
+        create table if not exist (
+            dt date,
+            dag_id character varying,
+            primary key (dt, dag_id)
+        )
+        
+[2023-03-08T05:37:14.303+0000] {base.py:73} INFO - Using connection ID 'postgrest_localhost' for task execution.
+[2023-03-08T05:37:14.750+0000] {base.py:73} INFO - Using connection ID 'postgrest_localhost' for task execution.
+[2023-03-08T05:37:14.757+0000] {sql.py:375} INFO - Running statement: 
+        create table if not exist (
+            dt date,
+            dag_id character varying,
+            primary key (dt, dag_id)
+        )
+        , parameters: None
+[2023-03-08T05:37:14.759+0000] {taskinstance.py:1768} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/operators/sql.py", line 266, in execute
+    **extra_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/hooks/sql.py", line 349, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/hooks/sql.py", line 380, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.SyntaxError: syntax error at or near "exist"
+LINE 2:         create table if not exist (
+                                    ^
+
+[2023-03-08T05:37:14.774+0000] {taskinstance.py:1323} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_postgrest_v1, task_id=create_postgres_table, execution_date=20230308T052744, start_date=20230308T053713, end_date=20230308T053714
+[2023-03-08T05:37:14.797+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 87 for task create_postgres_table (syntax error at or near "exist"
+LINE 2:         create table if not exist (
+                                    ^
+; 8135)
+[2023-03-08T05:37:14.826+0000] {local_task_job.py:208} INFO - Task exited with return code 1
+[2023-03-08T05:37:14.865+0000] {taskinstance.py:2578} INFO - 0 downstream tasks scheduled from follow-on schedule check

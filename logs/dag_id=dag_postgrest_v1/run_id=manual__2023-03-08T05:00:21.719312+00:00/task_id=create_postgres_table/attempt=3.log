@@ -1,0 +1,51 @@
+[2023-03-08T05:10:28.355+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: dag_postgrest_v1.create_postgres_table manual__2023-03-08T05:00:21.719312+00:00 [queued]>
+[2023-03-08T05:10:28.385+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: dag_postgrest_v1.create_postgres_table manual__2023-03-08T05:00:21.719312+00:00 [queued]>
+[2023-03-08T05:10:28.386+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-08T05:10:28.386+0000] {taskinstance.py:1280} INFO - Starting attempt 3 of 6
+[2023-03-08T05:10:28.386+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-08T05:10:28.415+0000] {taskinstance.py:1300} INFO - Executing <Task(PostgresOperator): create_postgres_table> on 2023-03-08 05:00:21.719312+00:00
+[2023-03-08T05:10:28.422+0000] {standard_task_runner.py:55} INFO - Started process 5936 to run task
+[2023-03-08T05:10:28.426+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'dag_postgrest_v1', 'create_postgres_table', 'manual__2023-03-08T05:00:21.719312+00:00', '--job-id', '76', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_postgres.py', '--cfg-path', '/tmp/tmpem8_keps']
+[2023-03-08T05:10:28.429+0000] {standard_task_runner.py:83} INFO - Job 76: Subtask create_postgres_table
+[2023-03-08T05:10:28.524+0000] {task_command.py:388} INFO - Running <TaskInstance: dag_postgrest_v1.create_postgres_table manual__2023-03-08T05:00:21.719312+00:00 [running]> on host df4d96e1a045
+[2023-03-08T05:10:28.639+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Aditya
+AIRFLOW_CTX_DAG_ID=dag_postgrest_v1
+AIRFLOW_CTX_TASK_ID=create_postgres_table
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-08T05:00:21.719312+00:00
+AIRFLOW_CTX_TRY_NUMBER=3
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-03-08T05:00:21.719312+00:00
+[2023-03-08T05:10:28.640+0000] {sql.py:254} INFO - Executing: 
+        create table if not exist (
+            dt date,
+            dag_id character varying,
+            primary key (dt, dag_id)
+        )
+        
+[2023-03-08T05:10:28.653+0000] {base.py:73} INFO - Using connection ID 'postgrest_localhost' for task execution.
+[2023-03-08T05:10:29.200+0000] {base.py:73} INFO - Using connection ID 'postgrest_localhost' for task execution.
+[2023-03-08T05:10:29.202+0000] {taskinstance.py:1768} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/operators/sql.py", line 266, in execute
+    **extra_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/hooks/sql.py", line 342, in run
+    with closing(self.get_conn()) as conn:
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/postgres/hooks/postgres.py", line 144, in get_conn
+    self.conn = psycopg2.connect(**conn_args)
+  File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (::1), port 5432 failed: Cannot assign requested address
+	Is the server running on that host and accepting TCP/IP connections?
+
+[2023-03-08T05:10:29.215+0000] {taskinstance.py:1323} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_postgrest_v1, task_id=create_postgres_table, execution_date=20230308T050021, start_date=20230308T051028, end_date=20230308T051029
+[2023-03-08T05:10:29.239+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 76 for task create_postgres_table (connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (::1), port 5432 failed: Cannot assign requested address
+	Is the server running on that host and accepting TCP/IP connections?
+; 5936)
+[2023-03-08T05:10:29.282+0000] {local_task_job.py:208} INFO - Task exited with return code 1
+[2023-03-08T05:10:29.321+0000] {taskinstance.py:2578} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,48 @@
+[2023-03-08T06:17:19.947+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: dag_postgrest_v3.delete_data_table manual__2023-03-08T06:17:16.528070+00:00 [queued]>
+[2023-03-08T06:17:19.974+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: dag_postgrest_v3.delete_data_table manual__2023-03-08T06:17:16.528070+00:00 [queued]>
+[2023-03-08T06:17:19.975+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-08T06:17:19.976+0000] {taskinstance.py:1280} INFO - Starting attempt 1 of 6
+[2023-03-08T06:17:19.977+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-08T06:17:20.012+0000] {taskinstance.py:1300} INFO - Executing <Task(PostgresOperator): delete_data_table> on 2023-03-08 06:17:16.528070+00:00
+[2023-03-08T06:17:20.023+0000] {standard_task_runner.py:55} INFO - Started process 11462 to run task
+[2023-03-08T06:17:20.034+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'dag_postgrest_v3', 'delete_data_table', 'manual__2023-03-08T06:17:16.528070+00:00', '--job-id', '100', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_postgres.py', '--cfg-path', '/tmp/tmpvdwi98zd']
+[2023-03-08T06:17:20.039+0000] {standard_task_runner.py:83} INFO - Job 100: Subtask delete_data_table
+[2023-03-08T06:17:20.191+0000] {task_command.py:388} INFO - Running <TaskInstance: dag_postgrest_v3.delete_data_table manual__2023-03-08T06:17:16.528070+00:00 [running]> on host df4d96e1a045
+[2023-03-08T06:17:20.380+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Aditya
+AIRFLOW_CTX_DAG_ID=dag_postgrest_v3
+AIRFLOW_CTX_TASK_ID=delete_data_table
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-08T06:17:16.528070+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-03-08T06:17:16.528070+00:00
+[2023-03-08T06:17:20.381+0000] {sql.py:254} INFO - Executing: 
+        delete from dag_run where dt = '2023-03-08' and dat_id = 'dag_postgrest_v3'
+        
+[2023-03-08T06:17:20.416+0000] {base.py:73} INFO - Using connection ID 'postgrest_localhost' for task execution.
+[2023-03-08T06:17:21.827+0000] {base.py:73} INFO - Using connection ID 'postgrest_localhost' for task execution.
+[2023-03-08T06:17:21.863+0000] {sql.py:375} INFO - Running statement: 
+        delete from dag_run where dt = '2023-03-08' and dat_id = 'dag_postgrest_v3'
+        , parameters: None
+[2023-03-08T06:17:21.869+0000] {taskinstance.py:1768} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/operators/sql.py", line 266, in execute
+    **extra_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/hooks/sql.py", line 349, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/hooks/sql.py", line 380, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.UndefinedColumn: column "dat_id" does not exist
+LINE 2: ...  delete from dag_run where dt = '2023-03-08' and dat_id = '...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "dag_run.dag_id".
+
+[2023-03-08T06:17:21.902+0000] {taskinstance.py:1323} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_postgrest_v3, task_id=delete_data_table, execution_date=20230308T061716, start_date=20230308T061719, end_date=20230308T061721
+[2023-03-08T06:17:21.982+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 100 for task delete_data_table (column "dat_id" does not exist
+LINE 2: ...  delete from dag_run where dt = '2023-03-08' and dat_id = '...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "dag_run.dag_id".
+; 11462)
+[2023-03-08T06:17:22.014+0000] {local_task_job.py:208} INFO - Task exited with return code 1
+[2023-03-08T06:17:22.130+0000] {taskinstance.py:2578} INFO - 0 downstream tasks scheduled from follow-on schedule check
